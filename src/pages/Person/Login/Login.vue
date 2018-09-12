@@ -21,13 +21,14 @@
        <!--邮箱登录-->
       <div class="unCommon" v-if="!isPhone">
       <div class="number">
-      <input type="text" placeholder="邮箱账号">
+      <input type="text" placeholder="邮箱账号" v-model="email">
       </div >
        <div class="number">
-        <input type="text" placeholder="密码">
+        <input type="text" placeholder="密码" v-model="password">
        </div>
-        <div class="number">
+        <div class="number cellPhone">
         <input type="text" placeholder="注册密码">
+          <p class="phone">使用密码验证登录</p>
         </div>
       </div>
       <!--手机号登录-->
@@ -36,16 +37,16 @@
             <input type="text" placeholder="请输入手机号" maxlength="11" v-model="phone">
           </div >
           <div class="number">
-            <input type="text" placeholder="请输入密码" maxlength="8" v-model="password">
+            <input type="text" placeholder="请输入密码" maxlength="8" v-model="pwd">
           </div>
           <div class="number cellPhone">
-            <input type="text" placeholder="忘记密码？">
+            <input type="text" placeholder="忘记密码？" v-model="code">
             <p class="phone">使用密码验证登录</p>
           </div>
         </div>
       </div>
       <div class="btn">
-        <button class="login_btn"><span class="text" @click="login">登录</span></button>
+        <button class="login_btn"><span class="text" @click.prevent="login">登录</span></button>
       </div>
       <div>
         <router-link to="/person">
@@ -59,30 +60,72 @@
   </div>
 </template>
 <script>
+  import {Toast,MessageBox} from 'mint-ui'
   export default {
     props: {
-      isPhone : Boolean
+      isPhone: Boolean
     },
     /*初始化数据*/
-    data(){
-      return{
-        phone:'',
+    data() {
+      return {
+        phone: '',
+        pwd: '',
+        email:'',
         password:''
       }
     },
-    computed:{
-      isRightPhone(){
-        return /^1\d{10}$/.test(this.phone)
-      }
+    computed: {
     },
-    methods:{
+    methods: {
       /*请求登录*/
-       login(){
-         if(!phone){
+      login() {
+        console.log('111')
+        /*手机号验证*/
+        if (this.isPhone) {
+          if (!this.phone || !(/^1\d{10}$/.test(this.phone))) {
+            MessageBox.alert('请输入正确的手机号')
+            return
+          } else if ((/^1\d{10}$/.test(this.phone))) {
+            /*手机号正确，输入密码判断*/
+            if (!(/^\d{6}$/.test(this.pwd))) {
+              MessageBox.alert('请输入6位密码')
+              return
+            } else {
+              this.$router.replace('/home')
+              Toast('登录成功')
+            }
+          }
+        } else{
+          if (!this.email || !(/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(this.email))) {
+            MessageBox.alert('请输入正确的邮箱')
+            return
+          } else if ((/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(this.email))) {
+            /*邮箱正确，输入密码判断*/
+            if (/^\d{8}$/.test(this.password)) {
+              this.$router.replace('/home')
+              Toast('登录成功')
+            } else {
+              MessageBox.alert('请输入正确的邮箱密码')
+              return
+            }
+          }
+        }
+      }
 
-         }
-       }
-    }
+      /*  if(/^1\d{10}$/.test(this.phone)) {
+          /!*手机号正确，输入密码判断*!/
+          if(/^\d{6}$/.test(this.pwd)){
+             this.$router.replace('/home')
+          } else{
+            MessageBox.alert('请输入正确的密码')
+            return
+          }
+          MessageBox.alert('请输入正确的手机号或密码')
+        }else if(!this.phone){
+
+        }*/
+
+      }
 
   }
 </script>

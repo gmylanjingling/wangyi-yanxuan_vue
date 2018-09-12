@@ -2,11 +2,16 @@
   <div class="person">
     <!--头部-->
     <div class="person_head">
+
       <div class="recommend_head_box">
+     <router-link to="/home">
         <i class="iconfont icon-shouye"></i>
+     </router-link>
         <span class="recommend_head_box_span">网易严选</span>
         <i class="iconfont icon-icon-test"></i>
+        <router-link to="/shop">
         <i class="iconfont icon-gouwuche"></i>
+        </router-link>
       </div>
     </div>
     <div class="person_content" v-if="!(this.$route.path==='/person/login')">

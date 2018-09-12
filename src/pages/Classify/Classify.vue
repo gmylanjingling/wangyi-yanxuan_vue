@@ -9,13 +9,13 @@
     <div class="classify_part">
       <div class="list_container">
         <div class="list_wrapper">
-          <ul class="shop_list">
+          <ul class="shop_list" ref="shopUl">
             <li :class="{on:currentIndex == index}" @click=add(index) class="shop_item" v-for="(list,index) in nav_data.categoryL1List">{{list.name}}</li>
           </ul>
         </div>
       </div>
       <div class="shop_content">
-        <div class="shop_wrapper">
+        <div class="shop_wrapper" v-if="init">
         <div class="notice">
           <img :src= "nav_data.categoryL1List[currentIndex].bannerUrl">
         </div>
@@ -33,7 +33,7 @@
 </template>
 <script>
   import BScroll from 'better-scroll'
-  import {mapState} from 'vuex'
+  import {mapState,mapGetters} from 'vuex'
   export default{
     data(){
       return{
@@ -41,12 +41,24 @@
       }
     },
     computed:{
-      ...mapState(['nav_data'])
+      ...mapState(['nav_data']),
+      ...mapGetters(['init'])
     },
     methods:{
        add:function(index){
          this.currentIndex = index
-       }
+       },
+      _initShopHeight(){
+        let lis = this.$refs.shopUl.children
+        const ul = this.$refs.shopUl
+        let top =0
+        const space = 10
+        Array.from(lis).forEach(li=>{
+          top += li.clientHeight+space
+        })
+        ul.style.height = top +'px'
+        console.log(ul.style.height)
+      },
     },
     mounted(){
       this.$store.dispatch('getNavList',()=>{
@@ -59,7 +71,8 @@
             click:true,
             scrollY: true
           })
-      })
+          this._initShopHeight()
+        })
       })
     }
   }
@@ -132,7 +145,6 @@
         padding 15px
         .shop_wrapper
           width 100%
-          height 1000px
           .notice
             width 100%
             height 96px

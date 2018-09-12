@@ -4,6 +4,7 @@ import {reqHome, reqDetail,reqNav} from '../api'
 export default {
   async getHome({commit}){
     const result = await reqHome()
+    console.log(result)
     if(result.code===0){
       commit(RECEIVE_HOME,{result})
     }
@@ -12,8 +13,8 @@ export default {
     const result = await reqDetail()
     if(result.code===0){
       commit(RECEIVE_DETAIL,{result})
-    }
 
+    }
   },
   async getNavList({commit},cb){
     const result = await reqNav()

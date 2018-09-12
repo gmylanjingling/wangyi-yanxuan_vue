@@ -16,7 +16,7 @@
     </div>
     <div class="bscroll">
       <div class="bscroll_content">
-        <div class="swiper-container">
+        <div class="swiper-container" v-if="home.headCateList">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <img :src="home.headCateList[current].bannerUrl" alt="">
@@ -724,7 +724,6 @@
             loop:true
           })
           this._initScroll()
-
       })
     },
     methods:{
@@ -739,13 +738,17 @@
         let lis = this.$refs.navUl.children
         const ul = this.$refs.navUl
         let left =0
+        const lefts=[]
+        lefts.push()
         const space = 35
         Array.from(lis).forEach(li=>{
           left += li.clientWidth+space
-
+            lefts.push(left);
         })
+        //更新lefts的状态
+        this.lefts=lefts
+        console.log(lefts)
         ul.style.width = left +'px'
-
       },
       _initUlGood(){
         let lis = this.$refs.newShop.children

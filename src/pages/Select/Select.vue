@@ -30,7 +30,7 @@
         <!--轮播-->
         <div class="select_content_essay">
           <ul ref="selectUl">
-            <li v-for="(num,index) in detail.column" :key="index">
+            <li v-for="(num,index) in detail.column" :key="index" class="hook">
               <img :src="num.picUrl" alt="">
               <div>{{num.title}}</div>
             </li>
@@ -38,9 +38,10 @@
         </div>
         <hr>
         <!--为你推荐-->
-        <div class="select_content_list">
+        <div class="select_content_list" >
           <div class="select_content_title">为你推荐</div>
-          <div class="select_content_product">
+          <!--zhenOne-->
+          <div class="select_content_product" v-if="detail.zhenOne">
             <div class="select_product_pic">
               <img :src="detail.zhenOne.picUrl" style="width:345px;height:200px">
               <span>{{detail.zhenOne.typeName}}</span>
@@ -51,9 +52,10 @@
             </div>
             <span class="info">{{detail.zhenOne.subTitle}}</span>
           </div>
-          <div class="select_content_food">
+          <!--detail.recommendThree-->
+          <div class="select_content_food" v-if="detail.recommendThree">
             <div class="select_food_text">
-              <div class="select_inner_text">
+              <div class="select_inner_text" v-if="detail.recommendThree">
                 <img :src="detail.recommendThree.avartar" alt="">
                 <span>{{detail.recommendThree.nickname}}</span>
               </div>
@@ -69,7 +71,8 @@
               <p>{{detail.recommendThree.typeName}}</p>
             </div>
           </div>
-          <div class="select_content_food">
+          <!--recommendTwo-->
+          <div class="select_content_food" v-if="detail.recommendTwo">
             <div class="select_food_text">
               <div class="select_inner_text">
                 <img :src="detail.recommendTwo.avatar" alt="">
@@ -86,7 +89,8 @@
               <p>{{detail.recommendTwo.typeName}}</p>
             </div>
           </div>
-          <div class="select_content_product">
+          <!--detail.recommendOne-->
+          <div class="select_content_product" v-if="detail.recommendOne">
             <div class="select_product_pic">
               <img :src="detail.recommendOne.picUrl">
               <span>严选推荐</span>
@@ -97,49 +101,13 @@
             </div>
             <span class="info">{{detail.recommendOne.subTitle}}</span>
           </div>
-          <div class="select_content_food">
-            <div class="select_food_text">
-              <div class="select_inner_text">
-                <img :src="detail.recommendThree.avartar" alt="">
-                <span>{{detail.recommendThree.nickname}}</span>
-              </div>
-              <p class="text_top">
-                {{detail.recommendThree.title}}
-              </p>
-              <p class="text_bottom">
-                {{detail.recommendThree.subTitle}}
-              </p>
-            </div>
-            <div class="select_food_pic">
-              <img :src="detail.recommendThree.picUrl" alt="">
-              <p>{{detail.recommendThree.typeName}}</p>
-            </div>
-          </div>
-          <div class="select_content_food">
-            <div class="select_food_text">
-              <div class="select_inner_text">
-                <img :src="detail.recommendTwo.avatar" alt="">
-                <span>{{detail.recommendTwo.nickName}}</span>
-              </div>
-              <p class="text_top">
-                {{detail.recommendTwo.title}}
-              </p>
-              <p class="text_bottom">
-                {{detail.recommendTwo.subTitle}}
-              </p>
-            </div>
-            <div class="select_food_pic">
-              <img :src="detail.recommendThree.picUrl" alt="">
-              <p>{{detail.recommendThree.typeName}}</p>
-            </div>
-          </div>
           <div class="select_moment">
             <div class="select_moment_wrapper">
             <div class="select_moment_title">
               十点一刻
             </div>
             <div class="moment-container">
-              <ul class="moment-wrapper" ref="momentUl">
+              <ul class="moment-wrapper" ref="momentUl" v-if="detail.tenfifteen">
                 <li class=" moment_tops moment_topic" style="background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/tenFifteen-2a1d0ea11b.png);">
                   <div class="today_topic" v-for="(item,index) in detail.tenfifteen" :key="index">
                   <p class="topic">--今日选题</p>
@@ -165,7 +133,7 @@
         </div>
         <hr>
        <!--严选甄品-->
-        <div class="select_content_list strict_select">
+        <div class="select_content_list strict_select" v-if="detail.zhenThree">
           <div class="select_content_title">严选甄品</div>
           <div class="select_content_product">
             <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/4ccd7856862bf06cd368ecfded7806c5.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
@@ -177,7 +145,7 @@
             </div>
             <span class="info">{{detail.zhenThree.subTitle}}</span>
           </div>
-          <div class="select_content_food">
+          <div class="select_content_food" v-if="detail.zhenTwo">
             <div class="select_food_text">
               <div class="select_inner_text">
                 <img :src= "detail.zhenTwo.avatar" alt="">
@@ -195,7 +163,7 @@
               <p>{{detail.zhenTwo.typeName}}</p>
             </div>
           </div>
-          <div class="select_content_food">
+          <div class="select_content_food" v-if="detail.zhenTwo">
             <div class="select_food_text">
               <div class="select_inner_text">
                 <img :src= "detail.zhenTwo.avatar" alt="">
@@ -215,15 +183,14 @@
           </div>
           <div class="select_content_product">
             <hr>
-            <div class="select_look">
+            <div class="select_look" v-if="detail.yxLook">
               <div class="select_content_title">严选LOOK</div>
               <img :src="detail.yxLook.picUrl" class="mediaImg">
               <div class="topic_info">
-                <p></p>
               </div>
             </div>
           </div>
-          <div class="select_moment">
+          <div class="select_moment" v-if="detail.yxLook">
             <p class="user">
               <img :src="detail.yxLook.avatar"   class="user_img">昵称</p>
              <p class="info">{{detail.yxLook.content}}</p>
@@ -231,9 +198,9 @@
         </div>
         <!--共15 张 <!--更多精彩-->
 
-        <div class="select_content_list find_more">
+        <div class="select_content_list find_more" v-if="detail.findMore">
           <div class="select_content_title more_wonderful">更多精彩</div>
-          <div class="select_findMore" v-for="(find,index) in detail.findMore">
+          <div class="select_findMore" v-for="(find,index) in detail.findMore" :key="index">
           <div class="select_content_product find_product">
             <div class="select_product_pic find_pic">
               <img :src="find.itemPicUrl" class="more_img">
@@ -256,74 +223,61 @@
   import {mapState} from 'vuex'
   export default {
     computed:{
-      ...mapState(['detail'])
+      ...mapState(['detail']) ,
+
     },
     mounted(){
-      this.$store.dispatch('getDetail',()=>{
-        this.$nextTick(()=>{
-          new BScroll(".select_content",{
-            click:true,
-            scrollY: true
-          })
-          new BScroll(".select_content_essay",{
-            click:true,
-            scrollX: true
-          })
-          new Swiper(".swiper-container",{
-            slidesPerView: 'auto',
-            centeredSlides: true,
-            spaceBetween: 15,
-            observer:true
-          })
-          new BScroll(".moment-container",{
-            click:true,
-            scrollX: true
-          })
-        })
-      })
-
-
+      this.$store.dispatch('getDetail')
 
     },
-    watch: {
-      banner() {
-        this.$nextTick(() => {
-          this._initSelectWidth()
-         /* this._initMomentWidth()*/
+    watch:{
+      detail(){
+        this.$nextTick(()=>{
+            new BScroll(".select_content",{
+              click:true,
+            })
+            new BScroll(".moment-container",{
+              click:true,
+              scrollX: true
+            })
+            new BScroll(".select_content_essay",{
+              click:true,
+              scrollX: true
+            })
+            new Swiper(".swiper-container",{
+              slidesPerView: 'auto',
+              centeredSlides: true,
+              spaceBetween: 15,
+              observer:true
+            })
+          this._initUlWidth()
+          this._initMomentWidth()
         })
       }
-      },
+    },
     methods:{
-      _initSelectWidth(){
+      _initUlWidth(){
         let lis = this.$refs.selectUl.children
         const ul = this.$refs.selectUl
         let left =0
-        //let lefts=[]
         const space = 10
-        /*   console.log(lis) */    //伪数组
         Array.from(lis).forEach(li=>{
           left += li.clientWidth+space
-          //lefts.push(left)
-          /*  console.log(lefts)*/
         })
         ul.style.width = left +'px'
-        console.log(ul.style.width)
+
       },
-     /* _initMomentWidth(){
+      _initMomentWidth(){
       let lis = this.$refs.momentUl.children
       const ul = this.$refs.momentUl
       let left =0
       //let lefts=[]
       const space = 10
-      /!*   console.log(lis) *!/    //伪数组
       Array.from(lis).forEach(li=>{
         left += li.clientWidth+space
-        //lefts.push(left)
-        /!*  console.log(lefts)*!/
       })
       ul.style.width = left +'px'
-      console.log(ul.style.width)
-    }*/
+    }
     }
   }
 </script>
@@ -432,6 +386,7 @@
           padding 10px
           ul
             width 900px
+            overflow hidden
             li
               float left
               width 90px

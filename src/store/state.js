@@ -1,5 +1,5 @@
 export default {
   home:{},
   detail:{},
-  nav_data:{}
+  nav_data:{},
 }
