@@ -3,41 +3,55 @@
     <!--头部-->
     <div class="person_head">
       <div class="recommend_head_box">
-        <router-link to="/home">
         <i class="iconfont icon-shouye"></i>
-        </router-link>
         <span class="recommend_head_box_span">网易严选</span>
         <i class="iconfont icon-icon-test"></i>
         <i class="iconfont icon-gouwuche"></i>
       </div>
     </div>
-    <div class="person_content">
+    <div class="person_content" v-if="!(this.$route.path==='/person/login')">
       <div class="logo_img">
         <div class="logo" style="background-image:url(http://yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png)">
+        </div>
       </div>
-
+      <div class="btn" @click="phoneLogin(true)">
+        <button class="login_btn">
+          <i class="iconfont icon-shouji"></i>
+          <span class="text">手机号码登录</span></button>
       </div>
-      <div class="btn">
-        <button class="login_btn"><i class="iconfont icon-shouji"></i> <span class="text">手机号码登录</span></button>
+      <div class="email btn" @click="phoneLogin(false)">
+        <span class="email login_btn">
+          <i class="iconfont icon-youxiang1"></i>
+          <span class="text">邮箱账号登录</span>
+        </span>
       </div>
-      <router-link to="/login">
-      <div class="email btn">
-        <span class="email login_btn"><i class="iconfont icon-youxiang1"></i> <span class="text">邮箱账号登录</span></span>
-      </div>
-      </router-link>
       <p class="quick_register">手机号快速注册></p>
       <div class="bottom_icon">
-        <span class="icon"><i class="iconfont icon-weixin"></i> 微信</span><span>|</span>
-      <span class="icon"><i class="iconfont icon-web-icon-"></i> QQ</span><span>|</span>
-      <span class="icon"><i class="iconfont icon-weibo"></i> 微博</span>
+        <span class="icon">
+          <i class="iconfont icon-weixin"></i> 微信</span><span>|</span>
+        <span class="icon">
+          <i class="iconfont icon-web-icon-"></i> QQ</span><span>|</span>
+        <span class="icon"><i class="iconfont icon-weibo"></i> 微博</span>
       </div>
-
     </div>
+   <router-view :isPhone="isPhone"></router-view>
   </div>
 
 </template>
 <script>
-
+  export default {
+  data(){
+    return {
+      isPhone:false
+    }
+  },
+  methods:{
+    phoneLogin(type){
+      this.isPhone = type
+      this.$router.push('/person/login')
+    }
+  }
+}
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .person

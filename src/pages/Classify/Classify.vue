@@ -10,201 +10,56 @@
       <div class="list_container">
         <div class="list_wrapper">
           <ul class="shop_list">
-            <li class="shop_item on">推荐专区</li>
-            <li class="shoop_item">爆款区</li>
-            <li class="shop_item">夏季专区</li>
-            <li class="shop_item">居家</li>
-            <li class="shop_item">鞋包配饰</li>
-            <li class="shop_item">服装</li>
-            <li class="shop_item">洗护</li>
-            <li class="shop_item">饮食</li>
-            <li class="shop_item">餐厨</li>
-            <li class="shop_item">婴童</li>
-            <li class="shop_item">文体</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
-            <li class="shop_item">电器</li>
+            <li :class="{on:currentIndex == index}" @click=add(index) class="shop_item" v-for="(list,index) in nav_data.categoryL1List">{{list.name}}</li>
           </ul>
         </div>
       </div>
       <div class="shop_content">
         <div class="shop_wrapper">
         <div class="notice">
-          <img src="http://yanxuan.nosdn.127.net/e7e5e94d7bb43b6b9043fee3c1da851d.png?imageView&thumbnail=0x196&quality=75">
+          <img :src= "nav_data.categoryL1List[currentIndex].bannerUrl">
         </div>
         <ul class="shop_pic">
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/fb64cdf3dd9acfe77c3c26f577c412fe.png?imageView&quality=85&thumbnail=144x144"></span>
-                <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/70082b1f2a4284939f3a656ffcc3af05.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info third_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/e171f0facdf45e34ac7f17982112e088.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/70082b1f2a4284939f3a656ffcc3af05.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/ef641f924b3dd4682e6a506384c28bd3.png?imageView&quality=85&thumbnail=144x144"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info third_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/fb64cdf3dd9acfe77c3c26f577c412fe.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/0455818fc7571231358e463df170e7de.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/70082b1f2a4284939f3a656ffcc3af05.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info third_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/e171f0facdf45e34ac7f17982112e088.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/0455818fc7571231358e463df170e7de.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/70082b1f2a4284939f3a656ffcc3af05.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info third_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/e171f0facdf45e34ac7f17982112e088.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/0455818fc7571231358e463df170e7de.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/70082b1f2a4284939f3a656ffcc3af05.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info third_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/e171f0facdf45e34ac7f17982112e088.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/fb64cdf3dd9acfe77c3c26f577c412fe.png?imageView&quality=85&thumbnail=144x144"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/70082b1f2a4284939f3a656ffcc3af05.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info third_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/e171f0facdf45e34ac7f17982112e088.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/fb64cdf3dd9acfe77c3c26f577c412fe.png?imageView&quality=85&thumbnail=144x144"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/70082b1f2a4284939f3a656ffcc3af05.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info third_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/e171f0facdf45e34ac7f17982112e088.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/fb64cdf3dd9acfe77c3c26f577c412fe.png?imageView&quality=85&thumbnail=144x144"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/70082b1f2a4284939f3a656ffcc3af05.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
-          </li>
-          <li class="shop_info third_info">
-                <span class="img"><img
-                  src="http://yanxuan.nosdn.127.net/e171f0facdf45e34ac7f17982112e088.png?imageView&quality=85&thumbnail=144x144"
-                  class="shop_img"></span>
-            <span class="text">配件第2件半价</span>
+          <li class="shop_info" v-for="(item,index) in nav_data.categoryL1List[currentIndex].subCateList">
+                <span class="img">
+                  <img :src="item.wapBannerUrl"></span>
+                <span class="text">{{item.name}}</span>
           </li>
         </ul>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
   import BScroll from 'better-scroll'
-
+  import {mapState} from 'vuex'
   export default{
-
+    data(){
+      return{
+        currentIndex: 0
+      }
+    },
+    computed:{
+      ...mapState(['nav_data'])
+    },
+    methods:{
+       add:function(index){
+         this.currentIndex = index
+       }
+    },
     mounted(){
-      this.$nextTick(()=>{
-        new BScroll('.list_wrapper',{
-          click:true,
-          scrollY:true
-        })
-        new BScroll(".shop_content",{
-          click:true,
-          scrollY: true
-        })
-
+      this.$store.dispatch('getNavList',()=>{
+        this.$nextTick(()=>{
+          new BScroll('.list_wrapper',{
+            click:true,
+            scrollY:true
+          })
+          new BScroll(".shop_content",{
+            click:true,
+            scrollY: true
+          })
+      })
       })
     }
   }
@@ -234,9 +89,6 @@
         border-radius 5px
         span
           line-height 30px
-
-
-
     .classify_part
       width 100%
       height 667px
@@ -250,8 +102,9 @@
           height 100%
           .shop_list
             width 100%
+            height 670px
             text-align center
-            line-height 40px
+            line-height 50px
             overflow hidden
             margin-top 10px
             .shop_item
@@ -262,6 +115,7 @@
               text-overflow ellipsis
               &.on
                 position relative
+                color red
                 &::before
                   content ''
                   display block
@@ -271,18 +125,14 @@
                   left 0px
                   height 25px
                   background-color red
-
-
-
-
-
       .shop_content
         float left
         width 264px
         height 667px
         padding 15px
         .shop_wrapper
-          width 264px
+          width 100%
+          height 1000px
           .notice
             width 100%
             height 96px
@@ -291,11 +141,12 @@
             height 100%
           .shop_pic
             width 100%
+            overflow hidden
             .shop_info
               width 72px
               height 108px
-              margin 10px 10px 0 0
-              display inline-block
+              margin 10px 16px 0 0
+              float left
               text-align center
               .img
                 img

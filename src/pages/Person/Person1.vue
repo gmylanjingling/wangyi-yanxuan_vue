@@ -1,7 +1,7 @@
 <template>
-  <div class="loginContainer">
+  <div class="person">
     <!--头部-->
-    <div class="login_head">
+    <div class="person_head">
       <div class="recommend_head_box">
         <i class="iconfont icon-shouye"></i>
         <span class="recommend_head_box_span">网易严选</span>
@@ -9,37 +9,54 @@
         <i class="iconfont icon-gouwuche"></i>
       </div>
     </div>
-    <div class="login_content">
+    <div class="person_content" v-if="this.$route.path='/person/login'">
       <div class="logo_img">
         <div class="logo" style="background-image:url(http://yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png)">
         </div>
-
-      </div>
-      <div class="input_content">
-      <div class=""></div>
-      <input type="text" placeholder="邮箱账号">
-      <input type="text" placeholder="密码">
-      <input type="text" placeholder="注册密码">
       </div>
       <div class="btn">
-        <button class="login_btn"><span class="text">登录</span></button>
+        <button class="login_btn" @click="phoneLogin(true)">
+          <i class="iconfont icon-shouji"></i>
+          <span class="text">手机号码登录</span></button>
       </div>
-      <div to="/login">
-        <div class="email btn">
-          <span class="email login_btn"><span class="text">其他方式登录</span></span>
-        </div>
+      <div class="email btn">
+        <span class="email login_btn" @click="phoneLogin(false)">
+          <i class="iconfont icon-youxiang1"></i>
+          <span class="text">邮箱账号登录</span>
+        </span>
+      </div>
+      <p class="quick_register">手机号快速注册></p>
+      <div class="bottom_icon">
+        <span class="icon">
+          <i class="iconfont icon-weixin"></i> 微信</span><span>|</span>
+        <span class="icon">
+          <i class="iconfont icon-web-icon-"></i> QQ</span><span>|</span>
+        <span class="icon"><i class="iconfont icon-weibo"></i> 微博</span>
       </div>
     </div>
   </div>
+  <router-view :isPhone="isPhone"></router-view>
 </template>
 <script>
-  export default {
+
+export default {
+  data(){
+    return {
+      isPhone:false
+    }
+  },
+  methods:{
+    phoneLogin(type){
+      this.isPhone = type
+    }
   }
+
+}
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  .loginContainer
+  .person
     width 100%
-    .login_head
+    .person_head
       width 100%
       height 45px
       position fixed
@@ -66,23 +83,21 @@
           right 20px
           font-size 24px
 
-
-    .login_content
+    .person_content
       position relative
       margin-top 45px
       width 100%
       height 667px
+      background #f2f5f4
       .logo_img
         width 100%
         height 102px
         padding 48px 0 24px
         .logo
           background-position center
-          background-size 96px 30px
+          background-size 123px 50px
           background-repeat no-repeat
-          padding 16px 0
-      .input_content
-        width 100%
+          padding 30px 0
       .btn
         text-align center
         margin-top 20px
@@ -91,15 +106,34 @@
           width 340px
           height 46px
           font-size 14px
-          color #cb7a7a
+          color #ffffff
           ounline none
           border-radius 5px
+          .iconfont
+            font-size 24px
           &.email
             display inline-block
             height 40px
             line-height 40px
-            background-color #ffffff
+            background-color #f2f5f4
             color #b4282d
             border 1px solid #b4282d
+            .icon-youxiang1
+              font-size 16px
+
+      .quick_register
+        text-align center
+        margin-top 15px
+        color #333
+        font-size 16px
+      .bottom_icon
+        position absolute
+        left 104px
+        bottom 101px
+        font-size 16px
+        span
+          display inline-block
+          margin-left 10px
+          color #7f7f7f
 
 </style>

@@ -9,18 +9,8 @@
         </div>
       </div>
       <div class="page_nav">
-        <ul class="nav_uls">
-          <li class="on">推荐</li>
-          <li >居家</li>
-          <li >鞋包配饰</li>
-          <li >服装</li>
-          <li >电器</li>
-          <li >洗护</li>
-          <li >饮食</li>
-          <li >餐厨</li>
-          <li >婴童</li>
-          <li >文体</li>
-          <li>特色区</li>
+        <ul class="nav_uls" ref="navUl">
+          <li :class="{on:index==current}" class=" navBar" @click="addClass(index)" v-for="(nav,index) in home.headCateList" :key="index">{{nav.name}}</li>
         </ul>
       </div>
     </div>
@@ -28,25 +18,16 @@
       <div class="bscroll_content">
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <img src="https://yanxuan.nosdn.127.net/f02e973bd0673b30ee30e08918f9aa5c.jpg?imageView&quality=75&thumbnail=750x0" class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/a7e05880a9b809b88c4228504ff7d1eb.jpg?imageView&quality=75&thumbnail=750x0" class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/aa6e9be1f19acad247ff59f1caee59e5.jpg?imageView&quality=75&thumbnail=750x0" class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/423e0a203ca30c3ca3877521760ae1d3.jpg?imageView&quality=75&thumbnail=750x0" class="swiper-slide">
+            <div class="swiper-slide">
+              <img :src="home.headCateList[current].bannerUrl" alt="">
+            </div>
           </div>
         </div>
         <div class="page_swiper_con">
           <ul>
-            <li>
-              <i class="iconfont icon-yes"></i>
-              <span>网易自营品牌</span>
-            </li>
-            <li>
-              <i class="iconfont icon-yes"></i>
-              <span>30天无忧退货</span>
-            </li>
-            <li>
-              <i class="iconfont icon-yes"></i>
-              <span>48小时快速退款</span>
+            <li v-for="(part,index) in home.policyDescList" :key="index">
+              <i class="iconfont icon-duihao"></i>
+              <span>{{part.desc}}</span>
             </li>
           </ul>
         </div>
@@ -55,10 +36,11 @@
           <div class="brand1">
             <a href="javascript:;" class="brand_title">
               <span>品牌制造商直供</span>
-              <i class="iconfont icon-jiantou"></i>
+              <i class="iconfont icon-xiayige"></i>
             </a>
           </div>
           <div class="brand2">
+            <!--制造商-->
             <ul>
               <li>
                 <div class="brand2_div">
@@ -107,6 +89,7 @@
           </div>
         </div>
         <hr>
+        <!--新品-->
         <div class="page_commodity">
           <header class="commodity_title">
             <a href="javascript:;">
@@ -117,38 +100,14 @@
               </div>
             </a>
           </header>
-          <div class="commodity_content">
-            <ul class="commodity_nav">
-              <li>
+          <div class="commodity_content1 commodity_content">
+            <ul class="commodity_nav" ref="newShop">
+              <li v-for="(item,index) in home.newItemList" :key="index">
                 <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/621362a91fcab80a55eb4685649ccb5f.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <p class="commodity_nav_p1">网易有道翻译王 网易有道翻译王</p>
-                  <p class="commodity_nav_p2">随身离线翻译神器 随身离线翻译神器</p>
-                  <span>￥998</span>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/86013f5b233479d29ee5b8c725b4c8ee.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <p class="commodity_nav_p1">男士优质小牛皮 男士优质小牛皮</p>
-                  <p class="commodity_nav_p2">精挑手工慢做，典雅男士皮鞋</p>
-                  <span>￥998</span>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/19a2eff0a5a8331abcbdc06a538d4737.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <p class="commodity_nav_p1">软仔石榴 200斤 软仔石榴 200斤</p>
-                  <p class="commodity_nav_p2">果实鲜美，新鲜多汁，新鲜多汁</p>
-                  <span>￥998</span>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/89449ebb60d9f933ec4f879eabb4c900.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <p class="commodity_nav_p1">日本制造 缤纷果味 网易有道翻译王</p>
-                  <p class="commodity_nav_p2">一瓶汽水，开启盛夏狂欢，开启盛夏狂欢</p>
-                  <span>￥998</span>
+                  <img :src="item.primaryPicUrl" alt="">
+                  <p class="commodity_nav_p1">{{item.name}}</p>
+                  <p class="commodity_nav_p2">{{item.simpleDesc}}</p>
+                  <span>￥{{item.retailPrice}}</span>
                 </a>
               </li>
             </ul>
@@ -165,41 +124,14 @@
               </div>
             </a>
           </header>
-          <div id="commodity_content_2" class="commodity_content">
-            <ul class="commodity_nav">
-              <li>
+          <div class="commodity_content_2 commodity_content">
+            <ul class="commodity_nav" ref="popularShop">
+              <li v-for="(popular,index) in home.popularItemList" :key="index">
                 <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/a2c2f2b27abe0b3c710c03af27655720.png?imageView&quality=65&thumbnail=330x330" alt="">
+                  <img :src="popular.primaryPicUrl" alt="">
                   <p class="commodity_x">限时购</p>
-                  <p class="commodity_nav_p1">网易有道翻译王 网易有道翻译王</p>
-                  <p class="commodity_nav_p2">随身离线翻译神器 随身离线翻译神器</p>
-                  <span>￥998</span>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/60de0631b077e236160a4d621c00ebe8.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <p ><span class="commodity_y">爆品</span><span class="commodity_x">限时购</span></p>
-                  <p class="commodity_nav_p1">男士优质小牛皮 男士优质小牛皮</p>
-                  <p class="commodity_nav_p2">精挑手工慢做，典雅男士皮鞋</p>
-                  <span>￥998</span>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/ccdbdc82bdc8929723e4941a93f85550.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <p class="commodity_y">爆品</p>
-                  <p class="commodity_nav_p1">软仔石榴 200斤 软仔石榴 200斤</p>
-                  <p class="commodity_nav_p2">果实鲜美，新鲜多汁，新鲜多汁</p>
-                  <span>￥998</span>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/cff23a222493b0424461c8f818348e6d.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <p class="commodity_x">特价</p>
-                  <p class="commodity_nav_p1">日本制造 缤纷果味 网易有道翻译王</p>
-                  <p class="commodity_nav_p2">一瓶汽水，开启盛夏狂欢，开启盛夏狂欢</p>
+                  <p class="commodity_nav_p1">{{popular.name}}</p>
+                  <p class="commodity_nav_p2">{{popular.simpleDesc}}</p>
                   <span>￥998</span>
                 </a>
               </li>
@@ -247,39 +179,17 @@
           </header>
           <!--轮播--better-scroll-->
           <div class="sift_header_nav">
-            <ul>
-              <li>
-                <img src="https://yanxuan.nosdn.127.net/544235ba401c70389b9fadcd134bc1b9.jpg?imageView&thumbnail=575y322&enlarge=1&quality=75" alt="">
+            <ul ref="topTic">
+              <li v-for="(item,index) in home.topicList" :key="index">
+                <img :src="item.itemPicUrl" alt="">
                 <div class="sift_lis_div">
-                  <h4>吃得到果肉的，才是真凤梨酥</h4>
+                  <h4>{{item.title}}</h4>
                   <span class="sift_lis_span">
-                    <span>998</span>
+                    <span>{{item.priceInfo}}</span>
                     <span>元起</span>
                   </span>
                 </div>
-                <span class="sift_span">50.0%凤梨果肉</span>
-              </li>
-              <li>
-                <img src="https://yanxuan.nosdn.127.net/a6616ae00386d7899b92faaa6816091a.jpg?imageView&thumbnail=575y322&enlarge=1&quality=75" alt="">
-                <div class="sift_lis_div">
-                  <h4>吃得到果肉的，才是真凤梨酥</h4>
-                  <span class="sift_lis_span">
-                    <span>998</span>
-                    <span>元起</span>
-                  </span>
-                </div>
-                <span class="sift_span">50.0%凤梨果肉</span>
-              </li>
-              <li>
-                <img src="https://yanxuan.nosdn.127.net/022e0ba0349d6d7da823b54bc3de88e4.jpg?imageView&thumbnail=575y322&enlarge=1&quality=75" alt="">
-                <div class="sift_lis_div">
-                  <h4>吃得到果肉的，才是真凤梨酥</h4>
-                  <span class="sift_lis_span">
-                    <span>998</span>
-                    <span>元起</span>
-                  </span>
-                </div>
-                <span class="sift_span">50.0%凤梨果肉</span>
+                <span class="sift_span">{{item.subtitle}}</span>
               </li>
             </ul>
           </div>
@@ -290,8 +200,8 @@
             <span>居家好物</span>
           </div>
           <ul class="home_uls">
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/aa68d160af714a4df687227bbdf89768.png?imageView&quality=65&thumbnail=330x330" alt="">
+            <li v-for="(item, index) in home.cateList" :key="index">
+              <img :src="item.bannerUrl" alt="">
               <div class="home_lis_div1">优质食材，署类膨化多肉配方</div>
               <div class="home_lis_div2">
                 <span>满折</span>
@@ -303,96 +213,6 @@
               <span class="home_lis_span">
                 ￥998
               </span>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/2e5c458901c72ee6fce43c046a9cea53.png?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="home_lis_div1">优质食材，署类膨化多肉配方</div>
-              <div class="home_lis_div2">
-                <span>满折</span>
-              </div>
-              <p class="home_lis_p">
-                <span>全期猫粮</span>
-                <span>20吨</span>
-              </p>
-              <span class="home_lis_span">
-                ￥998
-              </span>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/2ab7b86be448341df0247b4e44fc2e3b.png?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="home_lis_div1">优质食材，署类膨化多肉配方</div>
-              <div class="home_lis_div2">
-                <span>满折</span>
-              </div>
-              <p class="home_lis_p">
-                <span>全期猫粮</span>
-                <span>20吨</span>
-              </p>
-              <span class="home_lis_span">
-                ￥998
-              </span>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/9ce754d44e3edf6ece83b2692e5efab6.jpg?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="home_lis_div1">优质食材，署类膨化多肉配方</div>
-              <div class="home_lis_div2">
-                <span>满折</span>
-              </div>
-              <p class="home_lis_p">
-                <span>全期猫粮</span>
-                <span>20吨</span>
-              </p>
-              <span class="home_lis_span">
-                ￥998
-              </span>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/c563eef6eacff0e0a379071dd1d3637a.png?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="home_lis_div1">优质食材，署类膨化多肉配方</div>
-              <div class="home_lis_div2">
-                <span>满折</span>
-              </div>
-              <p class="home_lis_p">
-                <span>全期猫粮</span>
-                <span>20吨</span>
-              </p>
-              <span class="home_lis_span">
-                ￥998
-              </span>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="home_lis_div1">优质食材，署类膨化多肉配方</div>
-              <div class="home_lis_div2">
-                <span>满折</span>
-              </div>
-              <p class="home_lis_p">
-                <span>全期猫粮</span>
-                <span>20吨</span>
-              </p>
-              <span class="home_lis_span">
-                ￥998
-              </span>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/88dc5d80c6f84102f003ecd69c86e1cf.png?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="home_lis_div1">优质食材，署类膨化多肉配方</div>
-              <div class="home_lis_div2">
-                <span>满折</span>
-              </div>
-              <p class="home_lis_p">
-                <span>全期猫粮</span>
-                <span>20吨</span>
-              </p>
-              <span class="home_lis_span">
-                ￥998
-              </span>
-            </li>
-            <li class="home_uls_lis9">
-              <div class="home_lis_div9">
-                <p>更多居家好物</p>
-                <i class="iconfont icon-jiantou"></i>
-              </div>
             </li>
           </ul>
         </div>
@@ -870,38 +690,115 @@
 <script>
   import BScroll from "better-scroll"
   import Swiper from "swiper"
+  import {mapState} from 'vuex'
   import "swiper/dist/css/swiper.min.css"
   export default {
+    data(){
+      return{
+       current:0,
+      }
+    },
+    computed:{
+      ...mapState(['home']),
+    },
     mounted() {
       this.$nextTick(() => {
           new BScroll(".bscroll", {
           scrollY: true,
           click: true
+
         }),
-          new BScroll(".page_nav", {
+          new BScroll(".commodity_content1", {
             scrollX: true,
             click: true
           }),
-          new BScroll(".commodity_content", {
-            scrollX: true,
-            click: true
-          }),
-          new BScroll("#commodity_content_2", {
+          new BScroll(".commodity_content_2", {
             scrollX: true,
             click: true
           }),
           new BScroll(".sift_header_nav", {
             scrollX: true,
             click: true
-          }),
-          new Swiper(".swiper-container", {
-            loop: true
           })
+          new Swiper(".swiper-container", {
+            loop:true
+          })
+          this._initScroll()
+
       })
+    },
+    methods:{
+      //初始化滚动对象
+      _initScroll(){
+        let topScroll =  new BScroll(".page_nav", {
+          scrollX: true,
+          click: true
+        })
+      },
+      _initUlWidth(){
+        let lis = this.$refs.navUl.children
+        const ul = this.$refs.navUl
+        let left =0
+        const space = 35
+        Array.from(lis).forEach(li=>{
+          left += li.clientWidth+space
 
-    }
+        })
+        ul.style.width = left +'px'
+
+      },
+      _initUlGood(){
+        let lis = this.$refs.newShop.children
+        const ul = this.$refs.newShop
+        let left =0
+        //let lefts=[]
+        const space = 20
+        Array.from(lis).forEach(li=>{
+          left += li.clientWidth+space
+        })
+        ul.style.width = left +'px'
+
+      },
+      _initUlPopular(){
+        let lis = this.$refs.popularShop.children
+        const ul = this.$refs.popularShop
+        let left =0
+        //let lefts=[]
+        const space = 20
+        //伪数组
+        Array.from(lis).forEach(li=>{
+          left += li.clientWidth+space
+        })
+        ul.style.width = left +'px'
+
+      },
+      _initSelect(){
+        let lis = this.$refs.topTic.children
+        const ul = this.$refs.topTic
+        let left =0
+        //let lefts=[]
+        const space = 10
+        Array.from(lis).forEach(li=>{
+          left += li.clientWidth+space
+        })
+        ul.style.width = left +'px'
+
+      },
+      addClass(index){
+        this.current=index
+      }
+    },
+   watch:{
+      home(){
+        this.$nextTick(()=>{
+          this._initUlWidth(),
+          this._initUlGood(),
+          this._initUlPopular(),
+          this._initSelect()
+        })
+     }
+   }
   }
-
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
 
@@ -943,7 +840,6 @@
         height 30px
         overflow hidden
         .nav_uls
-          width 750px
           height 30px
           overflow hidden
           li
@@ -980,6 +876,9 @@
         .swiper-slide
           width 100%
           height 200px
+          img
+            width 100%
+            height 100%
     .page_swiper_con
       width 100%
       height 35px
@@ -1047,8 +946,9 @@
               height 100%
               margin-top -60px
     .page_commodity
-      width 100%
+      width 375px
       .commodity_title
+        width 375px
         height 160px
         position relative
         display flex
@@ -1078,22 +978,26 @@
             line-height: 30px
             background: #D8E5F1;
       .commodity_content
-        width 100%
+        width 375px
         height 220px
         margin-top 20px
         overflow hidden
         .commodity_nav
-          width 600px
           height 100%
           overflow hidden
+          text-align start
+           /* white-space nowrap*/
           li
-            float left
             width 130px
             height 180px
             margin-left 20px
+            display inline-block
+            white-space nowrap
             img
               width 100%
               height 120px
+              display inline-block
+              margin-bottom 16px
               background: #f4f4f4
             .commodity_nav_p1
               overflow: hidden;
@@ -1113,8 +1017,7 @@
               text-align center
               background: red
               color white
-              margin 5px 0
-              margin-left 8px
+              margin 5px 0 5px 15px
             .commodity_y
               display inline-block
               font-size 12px

@@ -6,7 +6,7 @@ import Select from "../pages/Select/Select.vue"
 import Classify from "../pages/Classify/Classify.vue"
 import Shop from "../pages/Shop/Shop.vue"
 import Person from "../pages/Person/Person.vue"
-import Login from "../pages/Login/Login.vue"
+import Login from "../pages/Person/Login/Login.vue"
 
 Vue.use(Router)
 
@@ -50,25 +50,17 @@ export default new Router({
         showFooter:true
       }
     },
-    {
-      path: '/login',
-      component: Login,
-      meta:{
-        showFooter:false
-      }
-    },
     // 个人路由
     {
       path:"/person",
       component:Person,
       meta:{
-        showFooter:true
+        showFooter:false
       },
       children:[
-
         {
           path:'/person/login',
-          component:Login
+          component:Login,
         }
         ]
     }

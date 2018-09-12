@@ -25,7 +25,9 @@
     <div class="shop_cart"></div>
     <div class="add_goods">去添加点什么吧</div>
     <div class="btn">
+    <router-link to="/person">
     <button class="login_btn">登录</button>
+    </router-link>
     </div>
     </div>
   </div>

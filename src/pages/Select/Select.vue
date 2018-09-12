@@ -15,32 +15,10 @@
         <!--swiper轮播-->
         <div class="swiper-container">
           <ul class="swiper-wrapper">
-            <li class="swiper-slide">
-              <img src="http://yanxuan.nosdn.127.net/528f4c0900991c04a58c3da4fd7a00eb.jpg?imageView&quality=75" alt="">
-              <div class="recommend_content_nav_lis_div">
-                <div class="recommend_content_nav_lis_div_div1">严选选择</div>
-                <div class="recommend_content_nav_lis_div_div2">拯救加班族计划</div>
-                <div class="recommend_content_nav_lis_div_div3">提升能量值的好物</div>
-              </div>
-            </li>
-            <li class="swiper-slide">
-              <img src="http://yanxuan.nosdn.127.net/2418a59ec3729a4fd5b20699d10ddccd.jpg?imageView&quality=75" alt="">
-              <div class="recommend_content_nav_lis_div">
-                <div class="recommend_content_nav_lis_div_div1">严选选择</div>
-                <div class="recommend_content_nav_lis_div_div2">拯救加班族计划</div>
-                <div class="recommend_content_nav_lis_div_div3">提升能量值的好物</div>
-              </div>
-            </li >
-            <li class="swiper-slide">
-              <img src="http://yanxuan.nosdn.127.net/67bd863b0446bff754753d87faa90af7.jpg?imageView&quality=75" alt="">
-              <div class="recommend_content_nav_lis_div">
-                <div class="recommend_content_nav_lis_div_div1">严选选择</div>
-                <div class="recommend_content_nav_lis_div_div2">拯救加班族计划</div>
-                <div class="recommend_content_nav_lis_div_div3">提升能量值的好物</div>
-              </div>
-            </li>
-            <li class="swiper-slide">
-              <img src="http://yanxuan.nosdn.127.net/6d9bc51259abf8e63a059d517ea42e2d.jpg?imageView&quality=75" alt="">
+            <li class="swiper-slide" v-for="(item,index) in detail.banner" :key="index" ref="navUl">
+
+              <img :src="item.picUrl" alt="">
+
               <div class="recommend_content_nav_lis_div">
                 <div class="recommend_content_nav_lis_div_div1">严选选择</div>
                 <div class="recommend_content_nav_lis_div_div2">拯救加班族计划</div>
@@ -51,42 +29,10 @@
         </div>
         <!--轮播-->
         <div class="select_content_essay">
-          <ul >
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/32fb54dda7de5c4a80b4d45d370e045e.png" alt="">
-              <div>严选推荐</div>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/cbcc9dcba30d4f8448a4412db4d9122f.png" alt="">
-              <div>丁磊的好货推荐</div>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/1662ac1fabbc2e495bdda39357a93d65.png" alt="">
-              <div>挑款师推荐</div>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/373cacad1befe30d2d602d0b797e8017.png" alt="">
-              <div>严选HOME</div>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/2642ad9119d817d974134e0ace613239.png" alt="">
-              <div>新品放映室</div>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/d3d19bfee20d272a63e8cf7d20fa5f8d.jpg" alt="">
-              <div>甄选之家</div>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/7be4ed9901fd6b110158e3381eb67ae2.png" alt="">
-              <div>严选LOOK</div>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/53cef980b13b1b20998d317989b184a1.png" alt="">
-              <div>口碑商品</div>
-            </li>
-            <li>
-              <img src="http://yanxuan.nosdn.127.net/e85c371f75223deb8a65b1f4cf64feb7.png" alt="">
-              <div>特色系列</div>
+          <ul ref="selectUl">
+            <li v-for="(num,index) in detail.column" :key="index">
+              <img :src="num.picUrl" alt="">
+              <div>{{num.title}}</div>
             </li>
           </ul>
         </div>
@@ -95,91 +41,96 @@
         <div class="select_content_list">
           <div class="select_content_title">为你推荐</div>
           <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
+            <div class="select_product_pic">
+              <img :src="detail.zhenOne.picUrl" style="width:345px;height:200px">
+              <span>{{detail.zhenOne.typeName}}</span>
             </div>
             <div class="select_product_text">
-              <span>9月服饰鞋包上新</span>
-              <span class="price">59元起</span>
+              <span>{{detail.zhenOne.title}}</span>
+              <span class="price">{{detail.zhenOne.priceInfo}}元起</span>
             </div>
-            <span class="info">秋天从新开始，更有超值换季折扣等你哦</span>
+            <span class="info">{{detail.zhenOne.subTitle}}</span>
           </div>
           <div class="select_content_food">
             <div class="select_food_text">
               <div class="select_inner_text">
-                <img src="http://yanxuan.nosdn.127.net/bb9873e306c58607c77c3577344eced5.jpg" alt="">
-                <span>饮食组:万万</span>
+                <img :src="detail.recommendThree.avartar" alt="">
+                <span>{{detail.recommendThree.nickname}}</span>
               </div>
               <p class="text_top">
-                10分钟做出异域大餐
+              {{detail.recommendThree.title}}
               </p>
               <p class="text_bottom">
-                所谓美食无国界，虽说中华美食博大精深，但偶尔在家做些异域美食
+                {{detail.recommendThree.subTitle}}
               </p>
             </div>
-            <div class="select_food_pic" style="background-image:url(//yanxuan.nosdn.127.net/e267628e894f76ff50a6afe1d4a265dd.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <p>教师节推荐</p>
+            <div class="select_food_pic">
+              <img :src="detail.recommendThree.picUrl">
+              <p>{{detail.recommendThree.typeName}}</p>
             </div>
           </div>
           <div class="select_content_food">
             <div class="select_food_text">
               <div class="select_inner_text">
-                <img src="http://yanxuan.nosdn.127.net/bb9873e306c58607c77c3577344eced5.jpg" alt="">
-                <span>饮食组:万万</span>
+                <img :src="detail.recommendTwo.avatar" alt="">
+                <span>{{detail.recommendTwo.nickName}}</span>
               </div>
               <p class="text_top">
-                10分钟做出异域大餐
+               {{detail.recommendTwo.title}}
               </p>
               <p class="text_bottom">
-                所谓美食无国界，虽说中华美食博大精深，但偶尔在家做些异域美食
+              {{detail.recommendTwo.subTitle}}
               </p>
             </div>
             <div class="select_food_pic" style="background-image:url(//yanxuan.nosdn.127.net/68ccc6c33be6b7e82d242993c1a18cf1.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <p>丁嘉的好物推荐</p>
+              <p>{{detail.recommendTwo.typeName}}</p>
             </div>
           </div>
           <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/2be20de13202cad9ff0feb5cd6828b1b.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
+            <div class="select_product_pic">
+              <img :src="detail.recommendOne.picUrl">
               <span>严选推荐</span>
             </div>
             <div class="select_product_text">
-              <span>成为满分的家务料理人</span>
-              <span class="price">4.9元起</span>
+              <span>{{detail.recommendOne.title}}</span>
+              <span class="price">{{detail.recommendOne.priceInfo}}元起</span>
             </div>
-            <span class="info">懒人清扫、 日式收纳、 洗衣神器</span>
+            <span class="info">{{detail.recommendOne.subTitle}}</span>
           </div>
           <div class="select_content_food">
             <div class="select_food_text">
               <div class="select_inner_text">
-                <img src="http://yanxuan.nosdn.127.net/bb9873e306c58607c77c3577344eced5.jpg" alt="">
-                <span>饮食组:万万</span>
+                <img :src="detail.recommendThree.avartar" alt="">
+                <span>{{detail.recommendThree.nickname}}</span>
               </div>
               <p class="text_top">
-                10分钟做出异域大餐
+                {{detail.recommendThree.title}}
               </p>
               <p class="text_bottom">
-                所谓美食无国界，虽说中华美食博大精深，但偶尔在家做些异域美食
+                {{detail.recommendThree.subTitle}}
               </p>
             </div>
-            <div class="select_food_pic" style="background-image:url(//yanxuan.nosdn.127.net/d7a2f652368123b7f25917163dc2da20.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <p>丁嘉的好物推荐</p>
+            <div class="select_food_pic">
+              <img :src="detail.recommendThree.picUrl" alt="">
+              <p>{{detail.recommendThree.typeName}}</p>
             </div>
           </div>
           <div class="select_content_food">
             <div class="select_food_text">
               <div class="select_inner_text">
-                <img src="http://yanxuan.nosdn.127.net/bb9873e306c58607c77c3577344eced5.jpg" alt="">
-                <span class="name">饮食组 : 万万</span>
+                <img :src="detail.recommendTwo.avatar" alt="">
+                <span>{{detail.recommendTwo.nickName}}</span>
               </div>
               <p class="text_top">
-                10分钟做出异域大餐
+                {{detail.recommendTwo.title}}
               </p>
               <p class="text_bottom">
-                所谓美食无国界，虽说中华美食博大精深，但偶尔在家做些异域美食
+                {{detail.recommendTwo.subTitle}}
               </p>
             </div>
-            <div class="select_food_pic" style="background-image:url(//yanxuan.nosdn.127.net/68ccc6c33be6b7e82d242993c1a18cf1.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <p>丁嘉的好物推荐</p>
+            <div class="select_food_pic">
+              <img :src="detail.recommendThree.picUrl" alt="">
+              <p>{{detail.recommendThree.typeName}}</p>
             </div>
           </div>
           <div class="select_moment">
@@ -188,25 +139,18 @@
               十点一刻
             </div>
             <div class="moment-container">
-              <ul class="moment-wrapper">
+              <ul class="moment-wrapper" ref="momentUl">
                 <li class=" moment_tops moment_topic" style="background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/tenFifteen-2a1d0ea11b.png);">
-                  <div class="today_topic">
+                  <div class="today_topic" v-for="(item,index) in detail.tenfifteen" :key="index">
                   <p class="topic">--今日选题</p>
-                  <p class="content">你有哪些租房经历</p>
-                  <p class="connect">聊聊你用过的租房神器</p>
-
+                  <p class="content">{{item.title}}</p>
+                  <p class="connect">{{item.desc}}</p>
+<!--头像-->
                   <div class="join_peoples">
-                    <span class="icon">
-                     <i class="iconfont icon-geren"></i>
-                   </span>
-                    <span class="img"><img src="//yanxuan.nosdn.127.net/6a329c72857f948d665be6e29086a1d3.jpg?imageView&thumbnail=48y48">
-                    </span>
-                    <span class="img"><img src="//yanxuan.nosdn.127.net/6a329c72857f948d665be6e29086a1d3.jpg?imageView&thumbnail=48y48">
-                    </span>
-                    <span class="icon">
-                     <i class="iconfont icon-xiaoxi"></i>
-                   </span>
-                    <span class="john_num">991人参与送题</span>
+                    <div class="img" v-for="(avatarItem,index) in item.participantAvatar" :key="index">
+                      <img :src="avatarItem" alt="">
+                    </div>
+                    <span class="john_num">{{item.participantNum}}参与送题</span>
                   </div>
                   </div>
                 </li>
@@ -220,298 +164,170 @@
           </div>
         </div>
         <hr>
-        <!--更多精彩-->
+       <!--严选甄品-->
         <div class="select_content_list strict_select">
           <div class="select_content_title">严选甄品</div>
           <div class="select_content_product">
             <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/4ccd7856862bf06cd368ecfded7806c5.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
+              <span>{{detail.zhenThree.typeName}}</span>
             </div>
             <div class="select_product_text">
-              <span>9月服饰鞋包上新</span>
-              <span class="price">59元起</span>
+              <span>{{detail.zhenThree.title}}</span>
+              <span class="price">{{detail.zhenThree.priceInfo}}元起</span>
             </div>
-            <span class="info">秋天从新开始，更有超值换季折扣等你哦</span>
+            <span class="info">{{detail.zhenThree.subTitle}}</span>
           </div>
           <div class="select_content_food">
             <div class="select_food_text">
               <div class="select_inner_text">
-                <img src="http://yanxuan.nosdn.127.net/bb9873e306c58607c77c3577344eced5.jpg" alt="">
-                <span>饮食组:万万</span>
+                <img :src= "detail.zhenTwo.avatar" alt="">
+                <span>{{detail.zhenTwo.nickname}}</span>
               </div>
               <p class="text_top">
-                10分钟做出异域大餐
+               {{detail.zhenTwo.title}}
               </p>
               <p class="text_bottom">
-                所谓美食无国界，虽说中华美食博大精深，但偶尔在家做些异域美食
+              {{detail.zhenTwo.subTitle}}
               </p>
             </div>
-            <div class="select_food_pic" style="background-image:url(//yanxuan.nosdn.127.net/e267628e894f76ff50a6afe1d4a265dd.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <p>教师节推荐</p>
+            <div class="select_food_pic">
+              <img :src="detail.zhenTwo.picUrl" alt="">
+              <p>{{detail.zhenTwo.typeName}}</p>
             </div>
           </div>
           <div class="select_content_food">
             <div class="select_food_text">
               <div class="select_inner_text">
-                <img src="http://yanxuan.nosdn.127.net/bb9873e306c58607c77c3577344eced5.jpg" alt="">
-                <span>饮食组:万万</span>
+                <img :src= "detail.zhenTwo.avatar" alt="">
+                <span>{{detail.zhenTwo.nickname}}</span>
               </div>
               <p class="text_top">
-                10分钟做出异域大餐
+                {{detail.zhenTwo.title}}
               </p>
               <p class="text_bottom">
-                所谓美食无国界，虽说中华美食博大精深，但偶尔在家做些异域美食
+                {{detail.zhenTwo.subTitle}}
               </p>
             </div>
-            <div class="select_food_pic" style="background-image:url(//yanxuan.nosdn.127.net/68ccc6c33be6b7e82d242993c1a18cf1.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <p>丁嘉的好物推荐</p>
+            <div class="select_food_pic">
+              <img :src="detail.zhenTwo.picUrl" alt="">
+              <p>{{detail.zhenTwo.typeName}}</p>
             </div>
           </div>
           <div class="select_content_product">
             <hr>
             <div class="select_look">
               <div class="select_content_title">严选LOOK</div>
-              <img src="//yanxuan.nosdn.127.net/ce03b9c9d8636b04564a6e36d5be0781.jpg?imageView&amp;quality=75" class="mediaImg" data-reactid=".0.1.7.1.0.0.0.0.$0/=1$0.0.0">
+              <img :src="detail.yxLook.picUrl" class="mediaImg">
               <div class="topic_info">
-                <p class="user">昵称</p>
-                <p>
-                  加入冰块一个小金桶，还是觉得比较甜，照  加入冰块一个小金桶，还是觉得比较甜，照  加入冰块一个小金桶，还是觉得比较甜，照  加入冰块一个小金桶，还是觉得比较甜，照
-                </p>
+                <p></p>
               </div>
             </div>
           </div>
           <div class="select_moment">
             <p class="user">
-              <img src="//yanxuan.nosdn.127.net/485ff1be6912be6ae696b6d360d1b101.png?imageView&amp;quality=75&amp;thumbnail=48y48" data-reactid=".0.1.7.1.1.0.0.0.0" class="user_img">昵称</p>
-             <p class="info">加了冰块一个小禁用，还是觉得比较甜加了冰块一个小禁用，还是觉得比较甜加了冰块一个小禁用，还是觉得比较甜加了冰块一个小禁用，还是觉得比较甜</p>
+              <img :src="detail.yxLook.avatar"   class="user_img">昵称</p>
+             <p class="info">{{detail.yxLook.content}}</p>
           </div>
         </div>
-        <hr>
-        <!--共15 张-->
-        <div class="select_content_list">
+        <!--共15 张 <!--更多精彩-->
+
+        <div class="select_content_list find_more">
           <div class="select_content_title more_wonderful">更多精彩</div>
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
+          <div class="select_findMore" v-for="(find,index) in detail.findMore">
+          <div class="select_content_product find_product">
+            <div class="select_product_pic find_pic">
+              <img :src="find.itemPicUrl" class="more_img">
+              <span>{{find.typeName}}</span>
             </div>
             <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
+              {{find.title}}
             </div>
           </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-        <div class="select_content_product">
-          <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-            <span>严选推荐</span>
-          </div>
-          <div class="select_product_text notice">
-            秋天从新开始，更有超值换季折扣等你哦
-          </div>
-        </div>
-      </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
-          </div>
-        </div>
-        <div class="select_content_list">
-          <div class="select_content_product">
-            <div class="select_product_pic" style="background-image:url(//yanxuan.nosdn.127.net/201eb7ad6eeb93fd9468f3f9f2deb8d4.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-              <span>严选推荐</span>
-            </div>
-            <div class="select_product_text notice">
-              秋天从新开始，更有超值换季折扣等你哦
-            </div>
           </div>
         </div>
         <hr>
-        <!--三个背景图的拼接-->
-        <div class="three_images">
-          <div class="left_image" style="background-image:url(//yanxuan.nosdn.127.net/a5277893ce7d4c9dc6c65d991220fa92.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-          </div>
-          <ul class="right_image">
-            <li class="top_image" style="background-image:url(//yanxuan.nosdn.127.net/a7e2eb51b994f5feed575afcd31ab585.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-            </li>
-            <li class="bottom_image" style="background-image:url(//yanxuan.nosdn.127.net/4d7f0c77ab1ad8f933018d790ee37994.jpg?imageView&quality=75);background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;background-position:center;background-repeat:no-repeat;">
-            </li>
-          </ul>
-        </div>
-        <div class="select_product_text notice_three" style="padding:0 15px 20px 15px" >
-         甲醛这种污染物无处不在
-        </div>
-
-        <hr>
-
       </div>
     </div>
   </div>
 </template>
 <script>
   import BScroll from "better-scroll"
-  import SwiPer from "swiper"
+  import Swiper from "swiper"
+  import {mapState} from 'vuex'
   export default {
+    computed:{
+      ...mapState(['detail'])
+    },
     mounted(){
-      this.$nextTick(()=>{
-        new BScroll(".select_content",{
-          click:true,
-          scrollY: true
+      this.$store.dispatch('getDetail',()=>{
+        this.$nextTick(()=>{
+          new BScroll(".select_content",{
+            click:true,
+            scrollY: true
+          })
+          new BScroll(".select_content_essay",{
+            click:true,
+            scrollX: true
+          })
+          new Swiper(".swiper-container",{
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 15,
+            observer:true
+          })
+          new BScroll(".moment-container",{
+            click:true,
+            scrollX: true
+          })
         })
-        new BScroll(".select_content_essay",{
-          click:true,
-          scrollX: true
-        })
-        new SwiPer(".swiper-container",{
-          loop:true
-        })
-        new BScroll(".moment-container",{
-          click:true,
-          scrollX: true
-        })
-        }
+      })
 
-      )
 
+
+    },
+    watch: {
+      banner() {
+        this.$nextTick(() => {
+          this._initSelectWidth()
+         /* this._initMomentWidth()*/
+        })
+      }
+      },
+    methods:{
+      _initSelectWidth(){
+        let lis = this.$refs.selectUl.children
+        const ul = this.$refs.selectUl
+        let left =0
+        //let lefts=[]
+        const space = 10
+        /*   console.log(lis) */    //伪数组
+        Array.from(lis).forEach(li=>{
+          left += li.clientWidth+space
+          //lefts.push(left)
+          /*  console.log(lefts)*/
+        })
+        ul.style.width = left +'px'
+        console.log(ul.style.width)
+      },
+     /* _initMomentWidth(){
+      let lis = this.$refs.momentUl.children
+      const ul = this.$refs.momentUl
+      let left =0
+      //let lefts=[]
+      const space = 10
+      /!*   console.log(lis) *!/    //伪数组
+      Array.from(lis).forEach(li=>{
+        left += li.clientWidth+space
+        //lefts.push(left)
+        /!*  console.log(lefts)*!/
+      })
+      ul.style.width = left +'px'
+      console.log(ul.style.width)
+    }*/
     }
   }
-
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-
   .select
     width 100%
     hr
@@ -551,20 +367,15 @@
       .select_content_wrapper
         width 100%
         .swiper-container
-          padding-top 45px
-          width 100%
-          ul
-            width 1400px
+          padding-top 50px
+          height 200px
+          width 335px
+          .swiper-wrapper
             height 200px
-            padding 10px 0
-            padding-left 50px
-            overflow hidden
             li
               position relative
-              width 330px !important
               height 200px
               float left
-              padding-left 10px
               img
                 border-radius 10px
                 width 100%
@@ -641,6 +452,8 @@
           width 100%
           box-sizing border-box
           padding 0 15px
+          &.find_more
+            background-color #ededed
           .select_content_title
             width 100%
             height 50px
@@ -653,16 +466,30 @@
               height 375px
           .select_content_product
             width 100%
-            height 290px
             border-radius 5px
             border 0.5px solid #d9d9d9
             overflow hidden
             color #333
+            &.find_product
+              width 100%
+              background-color #ffffff
             .select_product_pic
               width 100%
               height 200px
+              position relative
+              &.find_pic
+                width 100%
+                height 100%
+                text-align center
+                margin-top 10px
+              .more_img
+                width 320px
+                height 180px
               span
-                margin 5px 0 0 10px
+                top 10px
+                left 10px
+                z-index 100
+                position absolute
                 display inline-block
                 background-color #ffffff
                 border 1px solid #ffffff
@@ -674,10 +501,10 @@
             .select_product_text
               width 100%
               height 40px
-              line-height 40px
+              line-height 1.2
               font-size 18px
               box-sizing border-box
-              padding 0 10px
+              padding 10px 10px
               .price
                 float right
               &.notice
@@ -740,9 +567,15 @@
             float right
             width 40%
             height 100%
+            position relative
+            img
+              width 100%
+              height 100%
             p
-              margin 2px 0 0 5px
-              display inline-block
+              top 5px
+              left 5px
+              z-index 100
+              position absolute
               background-color #ffffff
               border 1px solid #ffffff
               line-height 16px
@@ -761,29 +594,31 @@
             .user
               font-size 12px
               color #7e8c8d
-              line-height 23px
             .user_img
               vertical-align middle
               width 23px
               height 23px
+              border-radius 50%
             .info
               font-size 14px
               color #333
               line-height 20px
-              margin-top 5px
+              margin 5px 0 10px 0
             .moment-container
               width 100%
               height 265px
               .moment-wrapper
-                width 600px
+                width 1000px
                 height 100%
+                white-space nowrap
                 .moment_tops
                   margin-left 15px
-                  float left
+                  display inline-block
                   width 285px
                   height 205px
                   background-size 100% 100%
                   background-repeat no-repeat
+                  overflow hidden
                   &:first-child
                     margin-left 0
                     .today_topic
@@ -808,61 +643,27 @@
                         font-size 20px
                         color #7e8c8d
                         margin-left 5px
+                        overflow hidden
                         .img
-                          display inline-block
+                          float left
+                          border-radius 50%
+                          margin-right -6px
+                          background #007aff
                           width 24px
                           height 24px
-                          border-radius 50%
-                          overflow hidden
-                          margin-right -6px
                           img
                             width 100%
                             height 100%
-
-
-                        .icon
-                          .iconfont
-                            font-size 20px
+                            border-radius 50%
+                            display block
                         .john_num
                           font-size 12px
                           line-height 20px
-
-
-
-
                   &:nth-child(2)
                     font-size 18px
                     color #7e8c8d
                     text-align center
                     line-height 205px
-
-
-
-
-
-
-        .three_images
-          width 100%
-          padding 15px
-          height 180px
-          overflow hidden
-          .left_image
-            float left
-            width 230px
-            height 100%
-          .right_image
-            float left
-            width 112px
-            height 230px
-            .top_image
-              width 100%
-              height 90px
-            .bottom_image
-              width 100%
-              height 90px
-              margin-top px
-
-
 
 
 </style>
