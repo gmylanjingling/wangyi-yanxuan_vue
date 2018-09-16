@@ -327,9 +327,8 @@
           .swiper-wrapper
             height 200px
             li
-              position relative
+              width 200px
               height 200px
-              float left
               img
                 border-radius 10px
                 width 100%
@@ -341,7 +340,7 @@
                 right: 0
                 bottom: 0
                 margin auto
-                width 230px
+                width 200px
                 height 100px
                 border-radius 10px
                 background-color rgba(255,255,255,.9)
@@ -385,7 +384,8 @@
           height 130px
           padding 10px
           ul
-            width 900px
+            display inline-flex
+            flex-wrap nowrap
             overflow hidden
             li
               float left
@@ -563,12 +563,11 @@
               width 100%
               height 265px
               .moment-wrapper
-                width 1000px
+                display inline-flex
+                flex-wrap nowrap
                 height 100%
-                white-space nowrap
                 .moment_tops
                   margin-left 15px
-                  display inline-block
                   width 285px
                   height 205px
                   background-size 100% 100%
